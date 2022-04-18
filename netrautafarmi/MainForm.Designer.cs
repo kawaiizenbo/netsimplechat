@@ -40,13 +40,17 @@
             // 
             // textBox
             // 
+            this.textBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox.Location = new System.Drawing.Point(76, 300);
             this.textBox.Name = "textBox";
             this.textBox.Size = new System.Drawing.Size(496, 20);
             this.textBox.TabIndex = 1;
+            this.textBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // refreshButton
             // 
+            this.refreshButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.refreshButton.Location = new System.Drawing.Point(472, 326);
             this.refreshButton.Name = "refreshButton";
             this.refreshButton.Size = new System.Drawing.Size(100, 23);
@@ -57,6 +61,7 @@
             // 
             // postButton
             // 
+            this.postButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.postButton.Location = new System.Drawing.Point(366, 326);
             this.postButton.Name = "postButton";
             this.postButton.Size = new System.Drawing.Size(100, 23);
@@ -67,6 +72,8 @@
             // 
             // nicknameBox
             // 
+            this.nicknameBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.nicknameBox.Location = new System.Drawing.Point(76, 328);
             this.nicknameBox.Name = "nicknameBox";
             this.nicknameBox.Size = new System.Drawing.Size(284, 20);
@@ -74,6 +81,7 @@
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 331);
             this.label1.Name = "label1";
@@ -83,6 +91,7 @@
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(17, 303);
             this.label2.Name = "label2";
@@ -92,8 +101,12 @@
             // 
             // messagesView
             // 
+            this.messagesView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.messagesView.Location = new System.Drawing.Point(12, 12);
             this.messagesView.Name = "messagesView";
+            this.messagesView.ReadOnly = true;
             this.messagesView.Size = new System.Drawing.Size(560, 282);
             this.messagesView.TabIndex = 8;
             this.messagesView.Text = "";

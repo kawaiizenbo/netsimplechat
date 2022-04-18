@@ -15,7 +15,6 @@ namespace netrautafarmi
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            nicknameBox.Text = Environment.UserName;
             using(WebClient wc = new WebClient())
             {
                 string html = wc.DownloadString("http://donut.gq/rautafarmi/messages.txt");
@@ -44,6 +43,14 @@ namespace netrautafarmi
                 messagesView.Text = Regex.Replace(html, "<.*?>", "");
             }
             textBox.Text = "";
+        }
+
+        private void textBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)ConsoleKey.Enter)
+            {
+                postButton_Click(null, null);
+            }
         }
     }
 }
