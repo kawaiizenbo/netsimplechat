@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Net;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -20,6 +15,7 @@ namespace netrautafarmi
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            nicknameBox.Text = Environment.UserName;
             using(WebClient wc = new WebClient())
             {
                 string html = wc.DownloadString("http://donut.gq/rautafarmi/messages.txt");
