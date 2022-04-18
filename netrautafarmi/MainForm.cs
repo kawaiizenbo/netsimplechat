@@ -39,10 +39,11 @@ namespace netrautafarmi
                 var data = new NameValueCollection();
                 data["name"] = nicknameBox.Text;
                 data["msg"] = textBox.Text;
-                wc.UploadValues("https://donut.gq/rautafarmi/post.php", data);
+                wc.UploadValues("http://donut.gq/rautafarmi/post.php", data);
                 string html = wc.DownloadString("http://donut.gq/rautafarmi/messages.txt");
                 messagesView.Text = Regex.Replace(html, "<.*?>", "");
             }
+            textBox.Text = "";
         }
     }
 }
