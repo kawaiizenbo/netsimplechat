@@ -36,6 +36,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.messagesView = new System.Windows.Forms.RichTextBox();
+            this.autoRefreshCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // textBox
@@ -51,7 +52,7 @@
             // refreshButton
             // 
             this.refreshButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.refreshButton.Location = new System.Drawing.Point(472, 326);
+            this.refreshButton.Location = new System.Drawing.Point(383, 326);
             this.refreshButton.Name = "refreshButton";
             this.refreshButton.Size = new System.Drawing.Size(100, 23);
             this.refreshButton.TabIndex = 2;
@@ -62,7 +63,7 @@
             // postButton
             // 
             this.postButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.postButton.Location = new System.Drawing.Point(366, 326);
+            this.postButton.Location = new System.Drawing.Point(277, 326);
             this.postButton.Name = "postButton";
             this.postButton.Size = new System.Drawing.Size(100, 23);
             this.postButton.TabIndex = 3;
@@ -76,7 +77,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.nicknameBox.Location = new System.Drawing.Point(76, 328);
             this.nicknameBox.Name = "nicknameBox";
-            this.nicknameBox.Size = new System.Drawing.Size(284, 20);
+            this.nicknameBox.Size = new System.Drawing.Size(195, 20);
             this.nicknameBox.TabIndex = 5;
             // 
             // label1
@@ -111,11 +112,25 @@
             this.messagesView.TabIndex = 8;
             this.messagesView.Text = "";
             // 
+            // autoRefreshCheckBox
+            // 
+            this.autoRefreshCheckBox.AutoSize = true;
+            this.autoRefreshCheckBox.Checked = true;
+            this.autoRefreshCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.autoRefreshCheckBox.Location = new System.Drawing.Point(489, 330);
+            this.autoRefreshCheckBox.Name = "autoRefreshCheckBox";
+            this.autoRefreshCheckBox.Size = new System.Drawing.Size(83, 17);
+            this.autoRefreshCheckBox.TabIndex = 9;
+            this.autoRefreshCheckBox.Text = "Auto refresh";
+            this.autoRefreshCheckBox.UseVisualStyleBackColor = true;
+            this.autoRefreshCheckBox.CheckedChanged += new System.EventHandler(this.autoRefreshCheckBox_CheckedChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 361);
+            this.Controls.Add(this.autoRefreshCheckBox);
             this.Controls.Add(this.messagesView);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -140,6 +155,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.RichTextBox messagesView;
+        private System.Windows.Forms.CheckBox autoRefreshCheckBox;
     }
 }
 

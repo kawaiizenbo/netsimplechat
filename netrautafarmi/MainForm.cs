@@ -8,27 +8,25 @@ namespace netrautafarmi
 {
     public partial class MainForm : Form
     {
+        private System.Timers.Timer messageCheckTimer;
+
         public MainForm()
         {
             InitializeComponent();
+            messageCheckTimer = new System.Timers.Timer();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            using(WebClient wc = new WebClient())
-            {
-                string html = wc.DownloadString("http://donut.gq/rautafarmi/messages.txt");
-                messagesView.Text = Regex.Replace(html, "<.*?>", "");
-            }
+            messageCheckTimer.Interval = 1000;
+            messageCheckTimer.Elapsed += CheckForMessages;
+            messageCheckTimer.Start();
+            CheckForMessages(null, null);
         }
 
         private void refreshButton_Click(object sender, EventArgs e)
         {
-            using (WebClient wc = new WebClient())
-            {
-                string html = wc.DownloadString("http://donut.gq/rautafarmi/messages.txt");
-                messagesView.Text = Regex.Replace(html, "<.*?>", "");
-            }
+            CheckForMessages(null, null);
         }
 
         private void postButton_Click(object sender, EventArgs e)
@@ -50,6 +48,24 @@ namespace netrautafarmi
             if (e.KeyChar == (char)ConsoleKey.Enter)
             {
                 postButton_Click(null, null);
+            }
+        }
+
+        private void autoRefreshCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if(autoRefreshCheckBox.Checked) messageCheckTimer.Start();
+            else messageCheckTimer.Stop();
+        }
+
+        private void CheckForMessages(object sender, EventArgs e)
+        {
+            using (WebClient wc = new WebClient())
+            {
+                string html = wc.DownloadString("http://donut.gq/rautafarmi/messages.txt");
+                messagesView.BeginInvoke(new MethodInvoker(delegate ()
+                {
+                    messagesView.Text = Regex.Replace(html, "<.*?>", "");
+                }));
             }
         }
     }
