@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.IO;
 using System.Net;
 using System.Windows.Forms;
 
@@ -12,6 +13,13 @@ namespace netrautafarmi
         private string instanceBaseURL;
         private string oldHTML;
 
+        public List<string> instancesList = new List<string>()
+        {
+            "http://donut.gq/rautafarmi",
+            "http://kawaiizenbo.me:8080/kzrautafarmi"
+        };
+        public string lastUsedNickName = "";
+
         public MainForm()
         {
             InitializeComponent();
@@ -19,6 +27,32 @@ namespace netrautafarmi
             messageCheckTimer = new System.Timers.Timer();
             messageCheckTimer.Interval = 1000;
             messageCheckTimer.Elapsed += CheckForMessages;
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            // load config.ini if it exists
+            if (File.Exists("config.ini"))
+            {
+                Dictionary<string, string> cfg = new Dictionary<string, string>();
+                foreach (string s in File.ReadAllLines("config.ini"))
+                {
+                    if (!s.StartsWith("#") && !s.StartsWith(";") && !s.StartsWith("["))
+                    {
+                        cfg.Add(s.Split('=')[0].Trim(), s.Split('=')[1].Trim());
+                    }
+                }
+                nicknameBox.Text = lastUsedNickName = cfg["nickname"];
+                instancesList = new List<string>(cfg["instances"].Split(','));
+            }
+        }
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            // save config.ini
+            File.WriteAllText("config.ini", $"# netrautafarmi config file\n" +
+                $"nickname = {lastUsedNickName}\n" +
+                $"instances = {string.Join(",", instancesList.ToArray())}");
         }
 
         private void refreshButton_Click(object sender, EventArgs e)
@@ -37,8 +71,8 @@ namespace netrautafarmi
                 using (WebClient wc = new WebClient())
                 {
                     var data = new NameValueCollection();
-                    data["name"] = nicknameBox.Text;
-                    data["msg"] = textBox.Text;
+                    data["name"] = nicknameBox.Text.Trim();
+                    data["msg"] = textBox.Text.Trim();
                     wc.UploadValues(instanceBaseURL + "/post.php", data);
                 }
                 CheckForMessages(null, null);
@@ -49,6 +83,7 @@ namespace netrautafarmi
             }
             // clear text box after posting message
             textBox.Text = "";
+            lastUsedNickName = nicknameBox.Text.Trim();
         }
 
         private void textBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -117,11 +152,19 @@ namespace netrautafarmi
 
         private void instanceListButton_Click(object sender, EventArgs e)
         {
+            // create an instance selector form
             InstanceSelectorForm instanceSelectorForm = new InstanceSelectorForm();
+            // add saved instance urls to control
+            foreach (string s in instancesList)
+            {
+                instanceSelectorForm.instancesListBox.Items.Add(s);
+            }
+            // show form and get selected instance
             if (instanceSelectorForm.ShowDialog() == DialogResult.OK && instanceSelectorForm.InstanceName != null)
             {
                 instanceTextBox.Text = instanceSelectorForm.InstanceName;
             }
+            instancesList = instanceSelectorForm.ReturnedInstances;
         }
     }
 }

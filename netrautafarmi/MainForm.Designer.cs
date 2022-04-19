@@ -192,6 +192,8 @@
             this.MinimumSize = new System.Drawing.Size(400, 200);
             this.Name = "MainForm";
             this.Text = "netrautafarmi";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
