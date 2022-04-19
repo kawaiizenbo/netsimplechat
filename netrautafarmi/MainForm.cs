@@ -15,6 +15,7 @@ namespace netrautafarmi
         public MainForm()
         {
             InitializeComponent();
+            // set up timer
             messageCheckTimer = new System.Timers.Timer();
             messageCheckTimer.Interval = 1000;
             messageCheckTimer.Elapsed += CheckForMessages;
@@ -22,32 +23,37 @@ namespace netrautafarmi
 
         private void refreshButton_Click(object sender, EventArgs e)
         {
+            // check for messages when refresh button is clicked
             CheckForMessages(null, null);
         }
 
         private void postButton_Click(object sender, EventArgs e)
         {
+            // do nothing if instance not selected
             if (instanceBaseURL == null) return;
             try
             {
+                // make a POST request to the remote server instance
                 using (WebClient wc = new WebClient())
                 {
                     var data = new NameValueCollection();
                     data["name"] = nicknameBox.Text;
                     data["msg"] = textBox.Text;
                     wc.UploadValues(instanceBaseURL + "/post.php", data);
-                    CheckForMessages(null, null);
                 }
+                CheckForMessages(null, null);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Couldn't Post");
             }
+            // clear text box after posting message
             textBox.Text = "";
         }
 
         private void textBox_KeyPress(object sender, KeyPressEventArgs e)
         {
+            // send message if enter is pressed while in message writing box
             if (e.KeyChar == (char)ConsoleKey.Enter)
             {
                 postButton_Click(null, null);
@@ -56,6 +62,7 @@ namespace netrautafarmi
 
         private void autoRefreshCheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            // turn on and off auto refresh with checkbox
             if(autoRefreshCheckBox.Checked) messageCheckTimer.Start();
             else messageCheckTimer.Stop();
         }
@@ -66,6 +73,7 @@ namespace netrautafarmi
             {
                 try
                 {
+                    // world's best html to rtf
                     string html = wc.DownloadString(instanceBaseURL + "/messages.txt");
                     html = "{\\rtf1\\ansi{}{\\colortbl;\\red114\\green114\\blue114;\\red28\\green135\\blue87;\\red44\\green73\\blue201;}\\pard\n" + html;
                     List<string> newHTML = new List<string>();
@@ -90,6 +98,7 @@ namespace netrautafarmi
 
         private void connectToInstanceButton_Click(object sender, EventArgs e)
         {
+            // connect to instance from text box
             messageCheckTimer.Stop();
             instanceBaseURL = instanceTextBox.Text;
             try
