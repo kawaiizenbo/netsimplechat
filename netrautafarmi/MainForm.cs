@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.IO;
 using System.Net;
 using System.Windows.Forms;
 
@@ -11,6 +10,7 @@ namespace netrautafarmi
     {
         private System.Timers.Timer messageCheckTimer;
         private string instanceBaseURL;
+        private string oldHTML;
 
         public MainForm()
         {
@@ -75,6 +75,8 @@ namespace netrautafarmi
                 {
                     // world's best html to rtf
                     string html = wc.DownloadString(instanceBaseURL + "/messages.txt");
+                    if (html == oldHTML) return;
+                    oldHTML = html;
                     html = "{\\rtf1\\ansi{}{\\colortbl;\\red114\\green114\\blue114;\\red28\\green135\\blue87;\\red44\\green73\\blue201;}\\pard\n" + html;
                     List<string> newHTML = new List<string>();
                     foreach (string s in html.Split('\n'))
@@ -111,6 +113,15 @@ namespace netrautafarmi
                 return;
             }
             messageCheckTimer.Start();
+        }
+
+        private void instanceListButton_Click(object sender, EventArgs e)
+        {
+            InstanceSelectorForm instanceSelectorForm = new InstanceSelectorForm();
+            if (instanceSelectorForm.ShowDialog() == DialogResult.OK && instanceSelectorForm.InstanceName != null)
+            {
+                instanceTextBox.Text = instanceSelectorForm.InstanceName;
+            }
         }
     }
 }
