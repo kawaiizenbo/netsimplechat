@@ -163,6 +163,7 @@
             // 
             // instanceListButton
             // 
+            this.instanceListButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.instanceListButton.Location = new System.Drawing.Point(456, 10);
             this.instanceListButton.Name = "instanceListButton";
             this.instanceListButton.Size = new System.Drawing.Size(75, 23);
