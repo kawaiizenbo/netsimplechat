@@ -35,8 +35,11 @@
             this.nicknameBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.messagesView = new System.Windows.Forms.RichTextBox();
             this.autoRefreshCheckBox = new System.Windows.Forms.CheckBox();
+            this.instanceTextBox = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.connectToInstanceButton = new System.Windows.Forms.Button();
+            this.messagesView = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // textBox
@@ -52,9 +55,9 @@
             // refreshButton
             // 
             this.refreshButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.refreshButton.Location = new System.Drawing.Point(383, 326);
+            this.refreshButton.Location = new System.Drawing.Point(408, 326);
             this.refreshButton.Name = "refreshButton";
-            this.refreshButton.Size = new System.Drawing.Size(100, 23);
+            this.refreshButton.Size = new System.Drawing.Size(75, 23);
             this.refreshButton.TabIndex = 2;
             this.refreshButton.Text = "Refresh";
             this.refreshButton.UseVisualStyleBackColor = true;
@@ -63,9 +66,9 @@
             // postButton
             // 
             this.postButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.postButton.Location = new System.Drawing.Point(277, 326);
+            this.postButton.Location = new System.Drawing.Point(327, 326);
             this.postButton.Name = "postButton";
-            this.postButton.Size = new System.Drawing.Size(100, 23);
+            this.postButton.Size = new System.Drawing.Size(75, 23);
             this.postButton.TabIndex = 3;
             this.postButton.Text = "Post";
             this.postButton.UseVisualStyleBackColor = true;
@@ -77,7 +80,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.nicknameBox.Location = new System.Drawing.Point(76, 328);
             this.nicknameBox.Name = "nicknameBox";
-            this.nicknameBox.Size = new System.Drawing.Size(195, 20);
+            this.nicknameBox.Size = new System.Drawing.Size(245, 20);
             this.nicknameBox.TabIndex = 5;
             // 
             // label1
@@ -100,20 +103,9 @@
             this.label2.TabIndex = 7;
             this.label2.Text = "Message:";
             // 
-            // messagesView
-            // 
-            this.messagesView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.messagesView.Location = new System.Drawing.Point(12, 12);
-            this.messagesView.Name = "messagesView";
-            this.messagesView.ReadOnly = true;
-            this.messagesView.Size = new System.Drawing.Size(560, 282);
-            this.messagesView.TabIndex = 8;
-            this.messagesView.Text = "";
-            // 
             // autoRefreshCheckBox
             // 
+            this.autoRefreshCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.autoRefreshCheckBox.AutoSize = true;
             this.autoRefreshCheckBox.Checked = true;
             this.autoRefreshCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -125,13 +117,60 @@
             this.autoRefreshCheckBox.UseVisualStyleBackColor = true;
             this.autoRefreshCheckBox.CheckedChanged += new System.EventHandler(this.autoRefreshCheckBox_CheckedChanged);
             // 
+            // instanceTextBox
+            // 
+            this.instanceTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.instanceTextBox.Location = new System.Drawing.Point(76, 12);
+            this.instanceTextBox.Name = "instanceTextBox";
+            this.instanceTextBox.Size = new System.Drawing.Size(415, 20);
+            this.instanceTextBox.TabIndex = 10;
+            this.instanceTextBox.Text = "http://donut.gq/rautafarmi";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(19, 15);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(51, 13);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "Instance:";
+            // 
+            // connectToInstanceButton
+            // 
+            this.connectToInstanceButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.connectToInstanceButton.Location = new System.Drawing.Point(497, 10);
+            this.connectToInstanceButton.Name = "connectToInstanceButton";
+            this.connectToInstanceButton.Size = new System.Drawing.Size(75, 23);
+            this.connectToInstanceButton.TabIndex = 12;
+            this.connectToInstanceButton.Text = "Connect";
+            this.connectToInstanceButton.UseVisualStyleBackColor = true;
+            this.connectToInstanceButton.Click += new System.EventHandler(this.connectToInstanceButton_Click);
+            // 
+            // messagesView
+            // 
+            this.messagesView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.messagesView.BackColor = System.Drawing.Color.White;
+            this.messagesView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.messagesView.Font = new System.Drawing.Font("Lucida Console", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.messagesView.Location = new System.Drawing.Point(12, 38);
+            this.messagesView.Name = "messagesView";
+            this.messagesView.Size = new System.Drawing.Size(560, 256);
+            this.messagesView.TabIndex = 13;
+            this.messagesView.Text = "";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 361);
-            this.Controls.Add(this.autoRefreshCheckBox);
             this.Controls.Add(this.messagesView);
+            this.Controls.Add(this.connectToInstanceButton);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.instanceTextBox);
+            this.Controls.Add(this.autoRefreshCheckBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.nicknameBox);
@@ -139,9 +178,9 @@
             this.Controls.Add(this.refreshButton);
             this.Controls.Add(this.textBox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(400, 200);
             this.Name = "MainForm";
             this.Text = "netrautafarmi";
-            this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -154,8 +193,11 @@
         private System.Windows.Forms.TextBox nicknameBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.RichTextBox messagesView;
         private System.Windows.Forms.CheckBox autoRefreshCheckBox;
+        private System.Windows.Forms.TextBox instanceTextBox;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button connectToInstanceButton;
+        private System.Windows.Forms.RichTextBox messagesView;
     }
 }
 
