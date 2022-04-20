@@ -52,6 +52,7 @@ namespace netrautafarmi
 
         private void InstanceSelectorForm_FormClosed(object sender, FormClosedEventArgs e)
         {
+            ReturnedInstances.Clear();
             foreach (object s in instancesListBox.Items)
             {
                 ReturnedInstances.Add(s.ToString());

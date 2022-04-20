@@ -161,7 +161,7 @@ namespace netrautafarmi
                     }
                     messagesView.BeginInvoke(new MethodInvoker(delegate ()
                     {
-                        messagesView.Rtf = string.Join("\\par\n", newHTML.ToArray());
+                        messagesView.Rtf = string.Join("\\cf0\\par\n", newHTML.ToArray());
                     }));
                 }
                 catch (Exception ex)
