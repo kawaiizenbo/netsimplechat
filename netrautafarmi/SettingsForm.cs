@@ -47,6 +47,7 @@ namespace netrautafarmi
 
         private void removeInstanceButton_Click(object sender, EventArgs e)
         {
+            if (instancesListBox.SelectedItem != null)
             instancesListBox.Items.Remove(instancesListBox.Items[instancesListBox.SelectedIndex]);
         }
 
