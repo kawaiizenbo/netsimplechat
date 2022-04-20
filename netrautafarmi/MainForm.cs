@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Drawing;
 using System.IO;
 using System.Net;
 using System.Windows.Forms;
@@ -19,6 +20,10 @@ namespace netrautafarmi
             "http://kawaiizenbo.me:8080/kzrautafarmi"
         };
         public string lastUsedNickName = "";
+        public Color dateColor = Color.FromArgb(114, 114, 114);
+        public Color nameColor = Color.FromArgb(28, 135, 87);
+        public Color numberColor = Color.FromArgb(44, 73, 201);
+        public Color gtTextColor = Color.FromArgb(120, 153, 34);
 
         public MainForm()
         {
@@ -26,7 +31,7 @@ namespace netrautafarmi
             // set up timer
             messageCheckTimer = new System.Timers.Timer();
             messageCheckTimer.Interval = 1000;
-            messageCheckTimer.Elapsed += CheckForMessages;
+            messageCheckTimer.Elapsed += TimerTickHandler;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -44,21 +49,39 @@ namespace netrautafarmi
                 }
                 nicknameBox.Text = lastUsedNickName = cfg["nickname"];
                 instancesList = new List<string>(cfg["instances"].Split(','));
+                dateColor = Color.FromArgb(int.Parse(cfg["dateColor"].Split(',')[0]), 
+                    int.Parse(cfg["dateColor"].Split(',')[1]), 
+                    int.Parse(cfg["dateColor"].Split(',')[2]));
+                nameColor = Color.FromArgb(int.Parse(cfg["nameColor"].Split(',')[0]),
+                    int.Parse(cfg["nameColor"].Split(',')[1]),
+                    int.Parse(cfg["nameColor"].Split(',')[2]));
+                numberColor = Color.FromArgb(int.Parse(cfg["numberColor"].Split(',')[0]),
+                    int.Parse(cfg["numberColor"].Split(',')[1]),
+                    int.Parse(cfg["numberColor"].Split(',')[2]));
+                gtTextColor = Color.FromArgb(int.Parse(cfg["gtTextColor"].Split(',')[0]),
+                    int.Parse(cfg["gtTextColor"].Split(',')[1]),
+                    int.Parse(cfg["gtTextColor"].Split(',')[2]));
             }
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             // save config.ini
-            File.WriteAllText("config.ini", $"# netrautafarmi config file\n" +
+            File.WriteAllText("config.ini", 
+                $"# netrautafarmi config file\n" +
                 $"nickname = {lastUsedNickName}\n" +
-                $"instances = {string.Join(",", instancesList.ToArray())}");
+                $"instances = {string.Join(",", instancesList.ToArray())}\n" +
+                $"dateColor = {dateColor.R},{dateColor.G},{dateColor.B}\n" +
+                $"nameColor = {nameColor.R},{nameColor.G},{nameColor.B}\n" +
+                $"numberColor = {numberColor.R},{numberColor.G},{numberColor.B}\n" +
+                $"gtTextColor = {gtTextColor.R},{gtTextColor.G},{gtTextColor.B}\n");
         }
 
         private void refreshButton_Click(object sender, EventArgs e)
         {
             // check for messages when refresh button is clicked
-            CheckForMessages(null, null);
+            // cant pass extra args for timer event
+            CheckForMessages(true);
         }
 
         private void postButton_Click(object sender, EventArgs e)
@@ -75,7 +98,7 @@ namespace netrautafarmi
                     data["msg"] = textBox.Text.Trim();
                     wc.UploadValues(instanceBaseURL + "/post.php", data);
                 }
-                CheckForMessages(null, null);
+                CheckForMessages(false);
             }
             catch (Exception ex)
             {
@@ -102,7 +125,12 @@ namespace netrautafarmi
             else messageCheckTimer.Stop();
         }
 
-        private void CheckForMessages(object sender, EventArgs e)
+        private void TimerTickHandler(object sender, EventArgs e)
+        {
+            // handle timer tick
+            CheckForMessages(false);
+        }
+        private void CheckForMessages(bool forced)
         {
             using (WebClient wc = new WebClient())
             {
@@ -110,16 +138,26 @@ namespace netrautafarmi
                 {
                     // world's best html to rtf
                     string html = wc.DownloadString(instanceBaseURL + "/messages.txt");
-                    if (html == oldHTML) return;
+                    if (html == oldHTML && !forced) return;
                     oldHTML = html;
-                    html = "{\\rtf1\\ansi{}{\\colortbl;\\red114\\green114\\blue114;\\red28\\green135\\blue87;\\red44\\green73\\blue201;}\\pard\n" + html;
+                    html = "{\\rtf1\\ansi{}{\\colortbl;" +
+                        $"\\red{dateColor.R}\\green{dateColor.G}\\blue{dateColor.B};" +
+                        $"\\red{nameColor.R}\\green{nameColor.G}\\blue{nameColor.B};" +
+                        $"\\red{numberColor.R}\\green{numberColor.G}\\blue{numberColor.B};" +
+                        $"\\red{gtTextColor.R}\\green{gtTextColor.G}\\blue{gtTextColor.B};" +
+                        "}\\pard\n" + html;
                     List<string> newHTML = new List<string>();
                     foreach (string s in html.Split('\n'))
                     {
-                        newHTML.Add(s.Replace("</span>", "\\cf0 ")
+                        newHTML.Add(s
+                            .Replace("</span>", "\\cf0 ")
                             .Replace("<span style='color: #727272;'>", "\\cf1 ")
                             .Replace("<span style='color: #1c8757;'>", "\\cf2 ")
-                            .Replace("<span style='color: #2c49c9;'>", "\\cf3 "));
+                            .Replace("<span style='color: #2c49c9;'>", "\\cf3 ")
+                            .Replace("<span style='color: #789922;'>", "\\cf4 ")
+                            .Replace("&gt;", ">")
+                            .Replace("&lt;", "<")
+                            .Replace("&amp;", "&"));
                     }
                     messagesView.BeginInvoke(new MethodInvoker(delegate ()
                     {
@@ -140,7 +178,7 @@ namespace netrautafarmi
             instanceBaseURL = instanceTextBox.Text;
             try
             {
-                CheckForMessages(null, null);
+                CheckForMessages(true);
             }
             catch(Exception ex)
             {
@@ -153,18 +191,28 @@ namespace netrautafarmi
         private void instanceListButton_Click(object sender, EventArgs e)
         {
             // create an instance selector form
-            InstanceSelectorForm instanceSelectorForm = new InstanceSelectorForm();
+            SettingsForm instanceSelectorForm = new SettingsForm();
             // add saved instance urls to control
             foreach (string s in instancesList)
             {
                 instanceSelectorForm.instancesListBox.Items.Add(s);
             }
+            // mad
+            instanceSelectorForm.ReturnedDateColor = dateColor;
+            instanceSelectorForm.ReturnedNameColor = nameColor;
+            instanceSelectorForm.ReturnedNumberColor = numberColor;
+            instanceSelectorForm.ReturnedGTTextColor = gtTextColor;
             // show form and get selected instance
             if (instanceSelectorForm.ShowDialog() == DialogResult.OK && instanceSelectorForm.InstanceName != null)
             {
                 instanceTextBox.Text = instanceSelectorForm.InstanceName;
             }
+            // even madder
             instancesList = instanceSelectorForm.ReturnedInstances;
+            dateColor = instanceSelectorForm.ReturnedDateColor;
+            nameColor = instanceSelectorForm.ReturnedNameColor;
+            numberColor = instanceSelectorForm.ReturnedNumberColor;
+            gtTextColor = instanceSelectorForm.ReturnedGTTextColor;
         }
     }
 }

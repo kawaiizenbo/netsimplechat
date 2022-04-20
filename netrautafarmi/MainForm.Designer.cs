@@ -139,7 +139,7 @@
             // connectToInstanceButton
             // 
             this.connectToInstanceButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.connectToInstanceButton.Location = new System.Drawing.Point(537, 10);
+            this.connectToInstanceButton.Location = new System.Drawing.Point(456, 10);
             this.connectToInstanceButton.Name = "connectToInstanceButton";
             this.connectToInstanceButton.Size = new System.Drawing.Size(75, 23);
             this.connectToInstanceButton.TabIndex = 12;
@@ -155,20 +155,20 @@
             this.messagesView.BackColor = System.Drawing.Color.White;
             this.messagesView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.messagesView.Font = new System.Drawing.Font("Lucida Console", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.messagesView.Location = new System.Drawing.Point(12, 38);
+            this.messagesView.Location = new System.Drawing.Point(12, 39);
             this.messagesView.Name = "messagesView";
-            this.messagesView.Size = new System.Drawing.Size(600, 336);
+            this.messagesView.Size = new System.Drawing.Size(600, 335);
             this.messagesView.TabIndex = 13;
             this.messagesView.Text = "";
             // 
             // instanceListButton
             // 
             this.instanceListButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.instanceListButton.Location = new System.Drawing.Point(456, 10);
+            this.instanceListButton.Location = new System.Drawing.Point(537, 10);
             this.instanceListButton.Name = "instanceListButton";
             this.instanceListButton.Size = new System.Drawing.Size(75, 23);
             this.instanceListButton.TabIndex = 14;
-            this.instanceListButton.Text = "List";
+            this.instanceListButton.Text = "Settings";
             this.instanceListButton.UseVisualStyleBackColor = true;
             this.instanceListButton.Click += new System.EventHandler(this.instanceListButton_Click);
             // 
