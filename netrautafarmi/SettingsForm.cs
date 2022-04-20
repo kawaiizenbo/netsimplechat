@@ -8,7 +8,7 @@ namespace netrautafarmi
     public partial class SettingsForm : Form
     {
         public string InstanceName { get; set; }
-        public List<string> ReturnedInstances { get; } = new List<string>();
+        public List<string> ReturnedInstances { get; set; } = new List<string>();
         public Color ReturnedDateColor { get; set;  }
         public Color ReturnedNameColor { get; set; }
         public Color ReturnedNumberColor { get; set; }
@@ -80,6 +80,10 @@ namespace netrautafarmi
 
         private void SettingsForm_Load(object sender, EventArgs e)
         {
+            foreach (string s in ReturnedInstances)
+            {
+                instancesListBox.Items.Add(s);
+            }
             dateColorSelectButton.BackColor = ReturnedDateColor;
             nameColorSelectButton.BackColor = ReturnedNameColor;
             numberColorSelectButton.BackColor = ReturnedNumberColor;

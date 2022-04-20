@@ -37,14 +37,14 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.dateColorSelectButton = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.nameColorSelectButton = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.numberColorSelectButton = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.gtTextColorSelectButton = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
+            this.gtTextColorSelectButton = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.numberColorSelectButton = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.nameColorSelectButton = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dateColorSelectButton = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
@@ -75,7 +75,7 @@
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 3;
-            this.cancelButton.Text = "Cancel";
+            this.cancelButton.Text = "Close";
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
@@ -137,59 +137,14 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Colors";
             // 
-            // dateColorSelectButton
+            // label4
             // 
-            this.dateColorSelectButton.Location = new System.Drawing.Point(6, 19);
-            this.dateColorSelectButton.Name = "dateColorSelectButton";
-            this.dateColorSelectButton.Size = new System.Drawing.Size(30, 23);
-            this.dateColorSelectButton.TabIndex = 0;
-            this.dateColorSelectButton.UseVisualStyleBackColor = true;
-            this.dateColorSelectButton.Click += new System.EventHandler(this.dateColorSelectButton_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(42, 24);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Date Label";
-            // 
-            // nameColorSelectButton
-            // 
-            this.nameColorSelectButton.Location = new System.Drawing.Point(6, 48);
-            this.nameColorSelectButton.Name = "nameColorSelectButton";
-            this.nameColorSelectButton.Size = new System.Drawing.Size(30, 23);
-            this.nameColorSelectButton.TabIndex = 2;
-            this.nameColorSelectButton.UseVisualStyleBackColor = true;
-            this.nameColorSelectButton.Click += new System.EventHandler(this.nameColorSelectButton_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(42, 53);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(84, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Nickname Label";
-            // 
-            // numberColorSelectButton
-            // 
-            this.numberColorSelectButton.Location = new System.Drawing.Point(6, 77);
-            this.numberColorSelectButton.Name = "numberColorSelectButton";
-            this.numberColorSelectButton.Size = new System.Drawing.Size(30, 23);
-            this.numberColorSelectButton.TabIndex = 4;
-            this.numberColorSelectButton.UseVisualStyleBackColor = true;
-            this.numberColorSelectButton.Click += new System.EventHandler(this.numberColorSelectButton_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(42, 82);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(73, 13);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Number Label";
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(42, 111);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(70, 13);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "\'>\' Text Label";
             // 
             // gtTextColorSelectButton
             // 
@@ -200,14 +155,59 @@
             this.gtTextColorSelectButton.UseVisualStyleBackColor = true;
             this.gtTextColorSelectButton.Click += new System.EventHandler(this.gtTextColorSelectButton_Click);
             // 
-            // label4
+            // label3
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(42, 111);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(70, 13);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "\'>\' Text Label";
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(42, 82);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(73, 13);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Number Label";
+            // 
+            // numberColorSelectButton
+            // 
+            this.numberColorSelectButton.Location = new System.Drawing.Point(6, 77);
+            this.numberColorSelectButton.Name = "numberColorSelectButton";
+            this.numberColorSelectButton.Size = new System.Drawing.Size(30, 23);
+            this.numberColorSelectButton.TabIndex = 4;
+            this.numberColorSelectButton.UseVisualStyleBackColor = true;
+            this.numberColorSelectButton.Click += new System.EventHandler(this.numberColorSelectButton_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(42, 53);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(84, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Nickname Label";
+            // 
+            // nameColorSelectButton
+            // 
+            this.nameColorSelectButton.Location = new System.Drawing.Point(6, 48);
+            this.nameColorSelectButton.Name = "nameColorSelectButton";
+            this.nameColorSelectButton.Size = new System.Drawing.Size(30, 23);
+            this.nameColorSelectButton.TabIndex = 2;
+            this.nameColorSelectButton.UseVisualStyleBackColor = true;
+            this.nameColorSelectButton.Click += new System.EventHandler(this.nameColorSelectButton_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(42, 24);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(59, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Date Label";
+            // 
+            // dateColorSelectButton
+            // 
+            this.dateColorSelectButton.Location = new System.Drawing.Point(6, 19);
+            this.dateColorSelectButton.Name = "dateColorSelectButton";
+            this.dateColorSelectButton.Size = new System.Drawing.Size(30, 23);
+            this.dateColorSelectButton.TabIndex = 0;
+            this.dateColorSelectButton.UseVisualStyleBackColor = true;
+            this.dateColorSelectButton.Click += new System.EventHandler(this.dateColorSelectButton_Click);
             // 
             // label5
             // 

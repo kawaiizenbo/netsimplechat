@@ -192,12 +192,8 @@ namespace netrautafarmi
         {
             // create an instance selector form
             SettingsForm instanceSelectorForm = new SettingsForm();
-            // add saved instance urls to control
-            foreach (string s in instancesList)
-            {
-                instanceSelectorForm.instancesListBox.Items.Add(s);
-            }
             // mad
+            instanceSelectorForm.ReturnedInstances = instancesList;
             instanceSelectorForm.ReturnedDateColor = dateColor;
             instanceSelectorForm.ReturnedNameColor = nameColor;
             instanceSelectorForm.ReturnedNumberColor = numberColor;
