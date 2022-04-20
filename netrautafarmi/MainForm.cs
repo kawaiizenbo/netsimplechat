@@ -118,13 +118,6 @@ namespace netrautafarmi
             }
         }
 
-        private void autoRefreshCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            // turn on and off auto refresh with checkbox
-            if(autoRefreshCheckBox.Checked) messageCheckTimer.Start();
-            else messageCheckTimer.Stop();
-        }
-
         private void TimerTickHandler(object sender, EventArgs e)
         {
             // handle timer tick

@@ -35,7 +35,6 @@
             this.nicknameBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.autoRefreshCheckBox = new System.Windows.Forms.CheckBox();
             this.instanceTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.connectToInstanceButton = new System.Windows.Forms.Button();
@@ -56,7 +55,7 @@
             // refreshButton
             // 
             this.refreshButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.refreshButton.Location = new System.Drawing.Point(448, 406);
+            this.refreshButton.Location = new System.Drawing.Point(456, 406);
             this.refreshButton.Name = "refreshButton";
             this.refreshButton.Size = new System.Drawing.Size(75, 23);
             this.refreshButton.TabIndex = 2;
@@ -67,7 +66,7 @@
             // postButton
             // 
             this.postButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.postButton.Location = new System.Drawing.Point(367, 406);
+            this.postButton.Location = new System.Drawing.Point(375, 406);
             this.postButton.Name = "postButton";
             this.postButton.Size = new System.Drawing.Size(75, 23);
             this.postButton.TabIndex = 3;
@@ -81,7 +80,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.nicknameBox.Location = new System.Drawing.Point(76, 408);
             this.nicknameBox.Name = "nicknameBox";
-            this.nicknameBox.Size = new System.Drawing.Size(285, 20);
+            this.nicknameBox.Size = new System.Drawing.Size(293, 20);
             this.nicknameBox.TabIndex = 5;
             // 
             // label1
@@ -104,27 +103,13 @@
             this.label2.TabIndex = 7;
             this.label2.Text = "Message:";
             // 
-            // autoRefreshCheckBox
-            // 
-            this.autoRefreshCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.autoRefreshCheckBox.AutoSize = true;
-            this.autoRefreshCheckBox.Checked = true;
-            this.autoRefreshCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.autoRefreshCheckBox.Location = new System.Drawing.Point(529, 410);
-            this.autoRefreshCheckBox.Name = "autoRefreshCheckBox";
-            this.autoRefreshCheckBox.Size = new System.Drawing.Size(83, 17);
-            this.autoRefreshCheckBox.TabIndex = 9;
-            this.autoRefreshCheckBox.Text = "Auto refresh";
-            this.autoRefreshCheckBox.UseVisualStyleBackColor = true;
-            this.autoRefreshCheckBox.CheckedChanged += new System.EventHandler(this.autoRefreshCheckBox_CheckedChanged);
-            // 
             // instanceTextBox
             // 
             this.instanceTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.instanceTextBox.Location = new System.Drawing.Point(76, 12);
             this.instanceTextBox.Name = "instanceTextBox";
-            this.instanceTextBox.Size = new System.Drawing.Size(374, 20);
+            this.instanceTextBox.Size = new System.Drawing.Size(455, 20);
             this.instanceTextBox.TabIndex = 10;
             // 
             // label3
@@ -139,7 +124,7 @@
             // connectToInstanceButton
             // 
             this.connectToInstanceButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.connectToInstanceButton.Location = new System.Drawing.Point(456, 10);
+            this.connectToInstanceButton.Location = new System.Drawing.Point(537, 10);
             this.connectToInstanceButton.Name = "connectToInstanceButton";
             this.connectToInstanceButton.Size = new System.Drawing.Size(75, 23);
             this.connectToInstanceButton.TabIndex = 12;
@@ -164,7 +149,7 @@
             // instanceListButton
             // 
             this.instanceListButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.instanceListButton.Location = new System.Drawing.Point(537, 10);
+            this.instanceListButton.Location = new System.Drawing.Point(537, 406);
             this.instanceListButton.Name = "instanceListButton";
             this.instanceListButton.Size = new System.Drawing.Size(75, 23);
             this.instanceListButton.TabIndex = 14;
@@ -182,7 +167,6 @@
             this.Controls.Add(this.connectToInstanceButton);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.instanceTextBox);
-            this.Controls.Add(this.autoRefreshCheckBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.nicknameBox);
@@ -207,7 +191,6 @@
         private System.Windows.Forms.TextBox nicknameBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.CheckBox autoRefreshCheckBox;
         private System.Windows.Forms.TextBox instanceTextBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button connectToInstanceButton;
