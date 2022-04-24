@@ -47,6 +47,8 @@
             this.dateColorSelectButton = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.opNameColorSelectButton = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -122,6 +124,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Controls.Add(this.opNameColorSelectButton);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.gtTextColorSelectButton);
             this.groupBox2.Controls.Add(this.label3);
@@ -132,7 +136,7 @@
             this.groupBox2.Controls.Add(this.dateColorSelectButton);
             this.groupBox2.Location = new System.Drawing.Point(290, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(150, 135);
+            this.groupBox2.Size = new System.Drawing.Size(150, 164);
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Colors";
@@ -212,7 +216,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(328, 163);
+            this.label5.Location = new System.Drawing.Point(328, 192);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(112, 13);
             this.label5.TabIndex = 9;
@@ -221,11 +225,29 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(293, 150);
+            this.label6.Location = new System.Drawing.Point(293, 179);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(147, 13);
             this.label6.TabIndex = 10;
             this.label6.Text = "netrautafarmi by KawaiiZenbo";
+            // 
+            // opNameColorSelectButton
+            // 
+            this.opNameColorSelectButton.Location = new System.Drawing.Point(6, 135);
+            this.opNameColorSelectButton.Name = "opNameColorSelectButton";
+            this.opNameColorSelectButton.Size = new System.Drawing.Size(30, 23);
+            this.opNameColorSelectButton.TabIndex = 8;
+            this.opNameColorSelectButton.UseVisualStyleBackColor = true;
+            this.opNameColorSelectButton.Click += new System.EventHandler(this.opNameColorSelectButton_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(42, 140);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(96, 13);
+            this.label7.TabIndex = 9;
+            this.label7.Text = "SysOp Name Color";
             // 
             // SettingsForm
             // 
@@ -271,5 +293,7 @@
         private System.Windows.Forms.Button dateColorSelectButton;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button opNameColorSelectButton;
     }
 }

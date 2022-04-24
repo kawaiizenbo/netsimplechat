@@ -13,6 +13,7 @@ namespace netrautafarmi
         public Color ReturnedNameColor { get; set; }
         public Color ReturnedNumberColor { get; set; }
         public Color ReturnedGTTextColor { get; set; }
+        public Color ReturnedOPNameColor { get; set; }
 
         public SettingsForm()
         {
@@ -90,6 +91,12 @@ namespace netrautafarmi
             nameColorSelectButton.BackColor = ReturnedNameColor;
             numberColorSelectButton.BackColor = ReturnedNumberColor;
             gtTextColorSelectButton.BackColor = ReturnedGTTextColor;
+            opNameColorSelectButton.BackColor = ReturnedOPNameColor;
+        }
+
+        private void opNameColorSelectButton_Click(object sender, EventArgs e)
+        {
+            if (colorDialog.ShowDialog() == DialogResult.OK) opNameColorSelectButton.BackColor = ReturnedOPNameColor = colorDialog.Color;
         }
     }
 }

@@ -24,6 +24,7 @@ namespace netrautafarmi
         public Color nameColor = Color.FromArgb(28, 135, 87);
         public Color numberColor = Color.FromArgb(44, 73, 201);
         public Color gtTextColor = Color.FromArgb(120, 153, 34);
+        public Color opNameColor = Color.FromArgb(0xaa, 0x2a, 0xc9);
 
         public MainForm()
         {
@@ -138,6 +139,7 @@ namespace netrautafarmi
                         $"\\red{nameColor.R}\\green{nameColor.G}\\blue{nameColor.B};" +
                         $"\\red{numberColor.R}\\green{numberColor.G}\\blue{numberColor.B};" +
                         $"\\red{gtTextColor.R}\\green{gtTextColor.G}\\blue{gtTextColor.B};" +
+                        $"\\red{opNameColor.R}\\green{opNameColor.G}\\blue{opNameColor.B};" +
                         "}\\pard\n" + html;
                     List<string> newHTML = new List<string>();
                     foreach (string s in html.Split('\n'))
@@ -148,9 +150,11 @@ namespace netrautafarmi
                             .Replace("<span style='color: #1c8757;'>", "\\cf2 ")
                             .Replace("<span style='color: #2c49c9;'>", "\\cf3 ")
                             .Replace("<span style='color: #789922;'>", "\\cf4 ")
+                            .Replace("<span style='color: #aa2cc9;'>", "\\cf5 ")
                             .Replace("&gt;", ">")
                             .Replace("&lt;", "<")
-                            .Replace("&amp;", "&"));
+                            .Replace("&amp;", "&")
+                            .Replace("&quot;", "\""));
                     }
                     messagesView.BeginInvoke(new MethodInvoker(delegate ()
                     {
@@ -191,6 +195,7 @@ namespace netrautafarmi
             instanceSelectorForm.ReturnedNameColor = nameColor;
             instanceSelectorForm.ReturnedNumberColor = numberColor;
             instanceSelectorForm.ReturnedGTTextColor = gtTextColor;
+            instanceSelectorForm.ReturnedOPNameColor = opNameColor;
             // show form and get selected instance
             if (instanceSelectorForm.ShowDialog() == DialogResult.OK && instanceSelectorForm.InstanceName != null)
             {
@@ -202,6 +207,7 @@ namespace netrautafarmi
             nameColor = instanceSelectorForm.ReturnedNameColor;
             numberColor = instanceSelectorForm.ReturnedNumberColor;
             gtTextColor = instanceSelectorForm.ReturnedGTTextColor;
+            opNameColor = instanceSelectorForm.ReturnedOPNameColor;
         }
     }
 }
