@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace netrautafarmi
+namespace netsimplechat
 {
     internal static class Program
     {

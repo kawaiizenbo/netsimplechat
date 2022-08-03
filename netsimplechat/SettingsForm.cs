@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace netrautafarmi
+namespace netsimplechat
 {
     public partial class SettingsForm : Form
     {

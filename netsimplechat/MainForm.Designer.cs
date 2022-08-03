@@ -1,4 +1,4 @@
-﻿namespace netrautafarmi
+﻿namespace netsimplechat
 {
     partial class MainForm
     {
@@ -149,7 +149,7 @@
             // 
             // instanceListButton
             // 
-            this.instanceListButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.instanceListButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.instanceListButton.Location = new System.Drawing.Point(537, 406);
             this.instanceListButton.Name = "instanceListButton";
             this.instanceListButton.Size = new System.Drawing.Size(75, 23);

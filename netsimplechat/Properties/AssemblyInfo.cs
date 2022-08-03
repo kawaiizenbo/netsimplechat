@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("netrautafarmi")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("netsimplechat")]
+[assembly: AssemblyDescription("Simple chat client")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("netrautafarmi")]
-[assembly: AssemblyCopyright("Copyright ©  2022")]
+[assembly: AssemblyCompany("KawaiiZenbo")]
+[assembly: AssemblyProduct("netsimplechat")]
+[assembly: AssemblyCopyright("Copyright © KawaiiZenbo 2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
