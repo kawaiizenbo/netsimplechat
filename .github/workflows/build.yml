@@ -1,6 +1,8 @@
 name: Build
  
-on: [push]
+on:
+  push:
+    branches: [ master ]
  
 jobs:
   build:
@@ -21,7 +23,7 @@ jobs:
     - name: Build and Publish
       env:
        ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
-      run: msbuild netrautafarmi.sln /p:Configuration=Release /p:DeployOnBuild=true
+      run: msbuild netsimplechat.sln /p:Configuration=Release /p:DeployOnBuild=true
  
     - name: Upload Artifact
       uses: actions/upload-artifact@v1.0.0
@@ -29,4 +31,4 @@ jobs:
        ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
       with:
         name: publish
-        path: netrautafarmi\bin\Release\netrautafarmi.exe
+        path: netsimplechat\bin\Release\netsimplechat.exe
