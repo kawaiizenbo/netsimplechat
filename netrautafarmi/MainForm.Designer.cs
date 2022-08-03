@@ -142,6 +142,7 @@
             this.messagesView.Font = new System.Drawing.Font("Lucida Console", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.messagesView.Location = new System.Drawing.Point(12, 39);
             this.messagesView.Name = "messagesView";
+            this.messagesView.ReadOnly = true;
             this.messagesView.Size = new System.Drawing.Size(600, 335);
             this.messagesView.TabIndex = 13;
             this.messagesView.Text = "";

@@ -17,7 +17,8 @@ namespace netrautafarmi
         public List<string> instancesList = new List<string>()
         {
             "http://donut.gq/rautafarmi",
-            "http://kawaiizenbo.me:8080/kzrautafarmi"
+            "http://kawaiizenbo.me:8080/kzrautafarmi",
+            "http://api.sudaox.com/nativechat"
         };
         public string lastUsedNickName = "";
         public Color dateColor = Color.FromArgb(114, 114, 114);
@@ -91,15 +92,32 @@ namespace netrautafarmi
             if (instanceBaseURL == null) return;
             try
             {
-                // make a POST request to the remote server instance
-                using (WebClient wc = new WebClient())
+                if (instanceBaseURL == "http://api.sudaox.com/nativechat")
                 {
-                    var data = new NameValueCollection();
-                    data["name"] = nicknameBox.Text.Trim();
-                    data["msg"] = textBox.Text.Trim();
-                    wc.UploadValues(instanceBaseURL + "/post.php", data);
+                    var str = new WebClient().DownloadString("http://api.sudaox.com/nativechat/send.php" +
+                        "?u=" + Uri.EscapeUriString(nicknameBox.Text.Trim()) + 
+                        "&m=" + Uri.EscapeUriString(textBox.Text.Trim()) + "&v=2");
+                    if (str == "sendsuccess")
+                    {
+                        CheckForMessages(false);
+                    }
+                    if (str == "diag_updateSend")
+                    {
+                        MessageBox.Show("You must update your client to the latest version to send messages.", "Update Required");
+                    }
                 }
-                CheckForMessages(false);
+                else
+                {
+                    // make a POST request to the remote server instance
+                    using (WebClient wc = new WebClient())
+                    {
+                        var data = new NameValueCollection();
+                        data["name"] = Uri.EscapeUriString(nicknameBox.Text.Trim());
+                        data["msg"] = Uri.EscapeUriString(textBox.Text.Trim());
+                        wc.UploadValues(instanceBaseURL + "/post.php", data);
+                    }
+                    CheckForMessages(false);
+                }    
             }
             catch (Exception ex)
             {
@@ -130,36 +148,56 @@ namespace netrautafarmi
             {
                 try
                 {
-                    // world's best html to rtf
-                    string html = wc.DownloadString(instanceBaseURL + "/messages.txt");
-                    if (html == oldHTML && !forced) return;
-                    oldHTML = html;
-                    html = "{\\rtf1\\ansi{}{\\colortbl;" +
-                        $"\\red{dateColor.R}\\green{dateColor.G}\\blue{dateColor.B};" +
-                        $"\\red{nameColor.R}\\green{nameColor.G}\\blue{nameColor.B};" +
-                        $"\\red{numberColor.R}\\green{numberColor.G}\\blue{numberColor.B};" +
-                        $"\\red{gtTextColor.R}\\green{gtTextColor.G}\\blue{gtTextColor.B};" +
-                        $"\\red{opNameColor.R}\\green{opNameColor.G}\\blue{opNameColor.B};" +
-                        "}\\pard\n" + html;
-                    List<string> newHTML = new List<string>();
-                    foreach (string s in html.Split('\n'))
+                    if (instanceBaseURL == "http://api.sudaox.com/nativechat")
                     {
-                        newHTML.Add(s
-                            .Replace("</span>", "\\cf0 ")
-                            .Replace("<span style='color: #727272;'>", "\\cf1 ")
-                            .Replace("<span style='color: #1c8757;'>", "\\cf2 ")
-                            .Replace("<span style='color: #2c49c9;'>", "\\cf3 ")
-                            .Replace("<span style='color: #789922;'>", "\\cf4 ")
-                            .Replace("<span style='color: #aa2cc9;'>", "\\cf5 ")
-                            .Replace("&gt;", ">")
-                            .Replace("&lt;", "<")
-                            .Replace("&amp;", "&")
-                            .Replace("&quot;", "\""));
+                        string chat = new WebClient().DownloadString("http://api.sudaox.com/nativechat/chat.php");
+                        if (chat == oldHTML && !forced) return;
+                        oldHTML = chat;
+                        messagesView.BeginInvoke(new MethodInvoker(delegate ()
+                        {
+                            messagesView.Rtf = "";
+                            messagesView.Text = "";
+                            messagesView.Text = chat;
+                        }));
                     }
-                    messagesView.BeginInvoke(new MethodInvoker(delegate ()
+                    else
                     {
-                        messagesView.Rtf = string.Join("\\cf0\\par\n", newHTML.ToArray());
-                    }));
+                        // world's best html to rtf
+                        string html = wc.DownloadString(instanceBaseURL + "/messages.txt");
+                        if (html == oldHTML && !forced) return;
+                        oldHTML = html;
+                        messagesView.BeginInvoke(new MethodInvoker(delegate ()
+                        {
+                            messagesView.Rtf = "";
+                            messagesView.Text = "";
+                        }));
+                        html = "{\\rtf1\\ansi{}{\\colortbl;" +
+                            $"\\red{dateColor.R}\\green{dateColor.G}\\blue{dateColor.B};" +
+                            $"\\red{nameColor.R}\\green{nameColor.G}\\blue{nameColor.B};" +
+                            $"\\red{numberColor.R}\\green{numberColor.G}\\blue{numberColor.B};" +
+                            $"\\red{gtTextColor.R}\\green{gtTextColor.G}\\blue{gtTextColor.B};" +
+                            $"\\red{opNameColor.R}\\green{opNameColor.G}\\blue{opNameColor.B};" +
+                            "}\\pard\n" + html;
+                        List<string> newHTML = new List<string>();
+                        foreach (string s in html.Split('\n'))
+                        {
+                            newHTML.Add(s
+                                .Replace("</span>", "\\cf0 ")
+                                .Replace("<span style='color: #727272;'>", "\\cf1 ")
+                                .Replace("<span style='color: #1c8757;'>", "\\cf2 ")
+                                .Replace("<span style='color: #2c49c9;'>", "\\cf3 ")
+                                .Replace("<span style='color: #789922;'>", "\\cf4 ")
+                                .Replace("<span style='color: #aa2cc9;'>", "\\cf5 ")
+                                .Replace("&gt;", ">")
+                                .Replace("&lt;", "<")
+                                .Replace("&amp;", "&")
+                                .Replace("&quot;", "\""));
+                        }
+                        messagesView.BeginInvoke(new MethodInvoker(delegate ()
+                        {
+                            messagesView.Rtf = string.Join("\\cf0\\par\n", newHTML.ToArray());
+                        }));
+                    }
                 }
                 catch (Exception ex)
                 {
