@@ -1,4 +1,4 @@
-﻿namespace netrautafarmi
+﻿namespace netsimplechat
 {
     partial class SettingsForm
     {
