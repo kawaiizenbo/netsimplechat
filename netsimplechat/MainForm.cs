@@ -99,7 +99,7 @@ namespace netsimplechat
                         "&m=" + Uri.EscapeUriString(textBox.Text.Trim()) + "&v=2");
                     if (str == "sendsuccess")
                     {
-                        CheckForMessages(false);
+                        // that's cool, i dont care
                     }
                     if (str == "diag_updateSend")
                     {
@@ -116,7 +116,6 @@ namespace netsimplechat
                         data["msg"] = Uri.EscapeUriString(textBox.Text.Trim());
                         wc.UploadValues(instanceBaseURL + "/post.php", data);
                     }
-                    CheckForMessages(false);
                 }    
             }
             catch (Exception ex)
@@ -126,6 +125,7 @@ namespace netsimplechat
             // clear text box after posting message
             textBox.Text = "";
             lastUsedNickName = nicknameBox.Text.Trim();
+            CheckForMessages(false);
         }
 
         private void textBox_KeyPress(object sender, KeyPressEventArgs e)
